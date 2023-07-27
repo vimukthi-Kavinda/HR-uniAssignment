@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="677.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <Pane prefHeight="86.0" prefWidth="677.0" style="-fx-background-color: #33A5FF;">
+         <children>
+            <Label layoutX="153.0" layoutY="20.0" text="HR Management System" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="262.0" layoutY="86.0" prefHeight="47.0" prefWidth="139.0" text="HR Panel" textAlignment="JUSTIFY" textFill="#2bcdd0">
+         <font>
+            <Font name="Monospaced Bold" size="27.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBckFromLeaveConf" layoutX="611.0" layoutY="596.0" mnemonicParsing="false" onAction="#hrBckFrmLeavReq" prefHeight="25.0" prefWidth="52.0" text="back" />
+      <Label layoutX="65.0" layoutY="552.0" text="Employee No :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmpNoLeaveReq" layoutX="173.0" layoutY="550.0" />
+      <Button fx:id="btnConfEmpLeave" layoutX="363.0" layoutY="550.0" mnemonicParsing="false" onAction="#confEmpLeave" text="confirm Leave" />
+      <Button fx:id="btnRejEmpLeave" layoutX="363.0" layoutY="596.0" mnemonicParsing="false" onAction="#rejectEmpLeave" prefHeight="25.0" prefWidth="90.0" text="Reject Leave" />
+      <TableView fx:id="tblLeaveReq" layoutX="137.0" layoutY="335.0" prefHeight="153.0" prefWidth="404.0">
+        <columns>
+          <TableColumn fx:id="tblColEmpId" prefWidth="91.0" text="Employee Id" />
+          <TableColumn fx:id="tblColDayCount" prefWidth="107.0" text="Leave Day count" />
+            <TableColumn fx:id="tblColStrtDay" prefWidth="90.0" text="Starting date" />
+            <TableColumn fx:id="tblColReason" prefWidth="115.0" text="Reason" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnLoadAllReq" layoutX="448.0" layoutY="496.0" mnemonicParsing="false" onAction="#loadLeaveRequests" text="Load Requests" />
+      <TableView fx:id="tblConfLv" layoutX="87.0" layoutY="150.0" prefHeight="125.0" prefWidth="548.0">
+        <columns>
+          <TableColumn fx:id="tblColConfLvEmpid" prefWidth="75.0" text="Employee Id" />
+          <TableColumn fx:id="tblColConfLvLvDc" prefWidth="75.0" text="Leave days" />
+            <TableColumn fx:id="tblColConfLvStrtDy" prefWidth="84.0" text="Starting date" />
+            <TableColumn fx:id="tblColConfLvResn" prefWidth="116.0" text="Reason" />
+            <TableColumn fx:id="tblColConfLvCofOff" prefWidth="108.0" text="Confirmed officer" />
+            <TableColumn fx:id="tblColConfLvRemLv" prefWidth="89.0" text="Remain Leaves" />
+        </columns>
+      </TableView>
+      <Label layoutX="285.0" layoutY="133.0" text="Confirmed leaves">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="283.0" layoutY="318.0" text="Leave requests">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnLoadLeave" layoutX="448.0" layoutY="283.0" mnemonicParsing="false" onAction="#loadAllLeaves" prefHeight="25.0" prefWidth="93.0" text="Load Leaves" />
+   </children>
+</Pane>

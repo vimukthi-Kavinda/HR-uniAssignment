@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="677.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <Pane prefHeight="86.0" prefWidth="677.0" style="-fx-background-color: #33A5FF;">
+         <children>
+            <Label layoutX="153.0" layoutY="20.0" text="HR Management System" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="261.0" layoutY="105.0" prefHeight="65.0" prefWidth="139.0" text="HR Panel" textAlignment="JUSTIFY" textFill="#2bcdd0">
+         <font>
+            <Font name="Monospaced Bold" size="27.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBckFromEmpLoad" layoutX="611.0" layoutY="458.0" mnemonicParsing="false" onAction="#hrBckFrmEmpDtal" prefHeight="25.0" prefWidth="52.0" text="back" />
+      <TableView fx:id="tblAllEmps" layoutX="34.0" layoutY="170.0" prefHeight="200.0" prefWidth="610.0">
+        <columns>
+          <TableColumn id="tblColEn" fx:id="tblColEmpNo" prefWidth="85.0" text="Employee No" />
+          <TableColumn id="tblColEnm" fx:id="tblColEmpNm" prefWidth="106.0" text="Employee Name" />
+            <TableColumn id="tblColEDpt" fx:id="tblColEmpDpt" prefWidth="102.0" text="Department" />
+            <TableColumn id="tblColEPst" fx:id="tblColEmpPost" prefWidth="91.0" text="Post" />
+            <TableColumn id="tblColEWrkDc" fx:id="tblColEmpWrkDc" prefWidth="112.0" text="Worked day count" />
+            <TableColumn id="tblColERLv" fx:id="tblColEmpRemLv" prefWidth="113.0" text="Remain Leaves" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnLoadEmpData" layoutX="542.0" layoutY="377.0" mnemonicParsing="false" onAction="#loadEmpDataToTbl" text="Load Employees" />
+   </children>
+</Pane>

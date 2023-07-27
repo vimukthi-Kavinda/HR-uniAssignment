@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="677.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <Pane prefHeight="86.0" prefWidth="677.0" style="-fx-background-color: #33A5FF;">
+         <children>
+            <Label layoutX="153.0" layoutY="20.0" text="HR Management System" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="49.0" layoutY="266.0" prefHeight="47.0" prefWidth="153.0">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button id="btnDayCount" fx:id="btnLeaveCount" layoutX="246.0" layoutY="225.0" mnemonicParsing="false" onAction="#getEmpLeaveCount" prefHeight="47.0" prefWidth="186.0" text="See remain day count">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="222.0" layoutY="142.0" prefHeight="65.0" prefWidth="234.0" text="Employee Panel" textAlignment="JUSTIFY" textFill="#2bcdd0">
+         <font>
+            <Font name="Monospaced Bold" size="27.0" />
+         </font>
+      </Label>
+      <Button id="btnLeaveReq" fx:id="btnEmpLeaveReq" layoutX="246.0" layoutY="290.0" mnemonicParsing="false" onAction="#reqEmpLeave" prefHeight="47.0" prefWidth="186.0" text="Leave request">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="467.0" layoutY="105.0" text="Welcome">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label id="lblusername" fx:id="lblEmpNm" layoutX="559.0" layoutY="107.0" prefHeight="17.0" prefWidth="70.0" />
+      <Button id="btnLogOut" fx:id="btnEmpLogOut" layoutX="603.0" layoutY="445.0" mnemonicParsing="false" onAction="#empLogOut" text="log out" />
+      <Label id="lblWrkDays" fx:id="lblwrkCount" layoutX="467.0" layoutY="134.0" prefHeight="20.0" prefWidth="186.0" />
+   </children>
+</Pane>
