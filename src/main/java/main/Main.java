@@ -14,21 +14,21 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         System.out.println("Initializing Employee users.. ");
-        TestData.empUserPwd.add(new Employee("abc", "a001", "a", "tst1", "1111", "manager", 2, 15,"cty1","id1"));
-        TestData.empUserPwd.add(new Employee("def", "a002", "a", "tst2", "2222", "SE", 1, 10,"cty2","id1"));
-        TestData.empUserPwd.add(new Employee("ghi", "a003", "b", "tst3", "3333", "security", 2, 16,"cty1","id1"));
-        TestData.empUserPwd.add(new Employee("jkl", "a004", "b", "tst4", "4444", "support", 3, 5,"cty1","id1"));
-        TestData.empUserPwd.add(new Employee("def1", "a023", "a", "tst23", "2222", "SE", 1, 10,"cty2","id1"));
-        TestData.empUserPwd.add(new Employee("ghi2", "a024", "b", "tst24", "3333", "security", 2, 16,"cty2","id1"));
-        TestData.empUserPwd.add(new Employee("jkl3", "a025", "b", "tst25", "4444", "support", 3, 5,"cty1","id1"));
+        TestData.empUserPwd.add(new Employee("j. doe", "a001", "a", "tst1", "1111", "manager", 2, 15,"cty1","id1"));
+        TestData.empUserPwd.add(new Employee("A. perera", "a002", "a", "tst2", "2222", "SE", 1, 10,"cty2","id1"));
+        TestData.empUserPwd.add(new Employee("B. peiris", "a003", "b", "tst3", "3333", "security", 2, 16,"cty1","id1"));
+        TestData.empUserPwd.add(new Employee("C. fernando", "a004", "b", "tst4", "4444", "support", 3, 5,"cty1","id1"));
+        TestData.empUserPwd.add(new Employee("D. rodrigo", "a023", "a", "tst23", "2222", "SE", 1, 10,"cty2","id1"));
+        TestData.empUserPwd.add(new Employee("E. silva", "a024", "b", "tst24", "3333", "security", 2, 16,"cty2","id1"));
+        TestData.empUserPwd.add(new Employee("F. kumar", "a025", "b", "tst25", "4444", "support", 3, 5,"cty1","id1"));
 
         System.out.println("Employee users initialized. ");
 
         System.out.println("Initializing HR admin users.. ");
-        TestData.hrUserPwd.add(new HrAdminEmployee("HRabc", "hr001", "hr1", "1111", "manager"));
-        TestData.hrUserPwd.add(new HrAdminEmployee("HRdef", "hr002", "hr2", "2222", "trainee"));
-        TestData.hrUserPwd.add(new HrAdminEmployee("HRghi", "hr003", "hr3", "3333", "associate"));
-        TestData.hrUserPwd.add(new HrAdminEmployee("HRjkl", "hr004", "hr4", "4444", "manager"));
+        TestData.hrUserPwd.add(new HrAdminEmployee("C. silva", "hr001", "hr1", "1111", "manager"));
+        TestData.hrUserPwd.add(new HrAdminEmployee("D. kumara", "hr002", "hr2", "2222", "trainee"));
+        TestData.hrUserPwd.add(new HrAdminEmployee("A. Silva", "hr003", "hr3", "3333", "associate"));
+        TestData.hrUserPwd.add(new HrAdminEmployee("B. perera", "hr004", "hr4", "4444", "manager"));
         System.out.println("HR admin users initialized. ");
 
         System.out.println("Initializing tempory leave requests.. ");
@@ -41,9 +41,9 @@ public class Main extends Application {
 
         //Dates should be in yyyy-MM-dd format
         System.out.println("Initializing applicant requests.. ");
-        TestData.applicantList.add(new Applicant("abc", "12526562","A/L","city1", "2002-08-01"));
-        TestData.applicantList.add(new Applicant("def", "54556563","BSC", "city2","2001-08-02"));
-        TestData.applicantList.add(new Applicant("ghi", "18989898","MSC", "city1","1994-08-01"));
+        TestData.applicantList.add(new Applicant("j. silva", "12526562","A/L","city1", "2002-08-01"));
+        TestData.applicantList.add(new Applicant("K. kumara", "54556563","BSC", "city2","2001-08-02"));
+        TestData.applicantList.add(new Applicant("D. perera", "18989898","MSC", "city1","1994-08-01"));
         System.out.println("initialized. ");
 
         System.out.println("Initializing leaves confirmed.. ");

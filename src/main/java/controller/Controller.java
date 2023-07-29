@@ -190,16 +190,9 @@ public class Controller implements Initializable {
     @FXML
     Button btnLoadLeave;
 
-
-
-
-
-
-
     private ObservableList<ApplicantTable> appcantData ;
     private ObservableList<EmployeeTable> employeeTblDataList;
     private ObservableList<LeaveRequestTable> leaveReqData ;
-
     private ObservableList<ConfirmedLeavesTable> leaveData ;
 
 
@@ -222,10 +215,8 @@ public class Controller implements Initializable {
 
     public void loadHrLogin(ActionEvent e) throws IOException {
         Parent part = FXMLLoader.load(getClass().getResource("/hrlogin.fxml"));
-
         Scene scene = new Scene(part);
         stage.setScene(scene);
-
         stage.show();
         ((Node) e.getSource()).getScene().getWindow().hide();
 
