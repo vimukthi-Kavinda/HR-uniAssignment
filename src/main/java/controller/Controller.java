@@ -174,26 +174,26 @@ public class Controller implements Initializable {
     TableView tblConfLv;
 
     @FXML
-    TableColumn<ConfirmedLeavesTable, String>  tblColConfLvEmpid;
+    TableColumn<ConfirmedLeavesTable, String> tblColConfLvEmpid;
 
     @FXML
-    TableColumn<ConfirmedLeavesTable, String>  tblColConfLvLvDc;
+    TableColumn<ConfirmedLeavesTable, String> tblColConfLvLvDc;
 
     @FXML
-    TableColumn<ConfirmedLeavesTable, String>  tblColConfLvStrtDy;
+    TableColumn<ConfirmedLeavesTable, String> tblColConfLvStrtDy;
     @FXML
-    TableColumn<ConfirmedLeavesTable, String>  tblColConfLvResn;
+    TableColumn<ConfirmedLeavesTable, String> tblColConfLvResn;
     @FXML
-    TableColumn<ConfirmedLeavesTable, String>  tblColConfLvCofOff;//confirmed officer
+    TableColumn<ConfirmedLeavesTable, String> tblColConfLvCofOff;//confirmed officer
     @FXML
-    TableColumn<ConfirmedLeavesTable, String>  tblColConfLvRemLv;
+    TableColumn<ConfirmedLeavesTable, String> tblColConfLvRemLv;
     @FXML
     Button btnLoadLeave;
 
-    private ObservableList<ApplicantTable> appcantData ;
+    private ObservableList<ApplicantTable> appcantData;
     private ObservableList<EmployeeTable> employeeTblDataList;
-    private ObservableList<LeaveRequestTable> leaveReqData ;
-    private ObservableList<ConfirmedLeavesTable> leaveData ;
+    private ObservableList<LeaveRequestTable> leaveReqData;
+    private ObservableList<ConfirmedLeavesTable> leaveData;
 
 
     Stage stage = new Stage();
@@ -408,35 +408,43 @@ public class Controller implements Initializable {
         employeeController = new EmployeeController();
         Employee em = employeeController.getEmployeeDetails(usrName);
 
-        if(em!=null) {
+        if (em != null) {
 
-            int reqDays = Integer.valueOf(txtNofDay.getText()).intValue();
-            if (em.getRemainLeaveDays() < reqDays) {
-                loadErrorNotification("You have only " + em.getRemainLeaveDays() + " days of leave", e);
-            } else if (em.getRemainLeaveDays() == 0) {
-                loadErrorNotification("You do not have leaves", e);
+            try {
+                int reqDays = Integer.valueOf(txtNofDay.getText()).intValue();
+                if (em.getRemainLeaveDays() < reqDays) {
+                    loadErrorNotification("You have only " + em.getRemainLeaveDays() + " days of leave", e);
+                } else if (em.getRemainLeaveDays() == 0) {
+                    loadErrorNotification("You do not have leaves", e);
 
-            } else {
+                } else {
 
-                LeaveRequest lv = new LeaveRequest(em.getEmployeeNo(), reqDays, txtStrtDate.getText(), txtAreaResn.getText());
+                    LeaveRequest lv = new LeaveRequest(em.getEmployeeNo(), reqDays, txtStrtDate.getText(), txtAreaResn.getText());
 
-                //add record to leave req table
-                int succ1 = employeeController.requestLeaves(lv);
-                int succCount = 0;
-                if (succ1 == 1) {
-                    //substract current leave count
-                    succCount = employeeController.substractEmpLeaveCount(em.getEmployeeNo(), reqDays);
-                    loadSuccessNotification("Leave request success.. \nYou have " + succCount + " Remain Leave days", e);
+                    //add record to leave req table
+                    int succ1 = employeeController.requestLeaves(lv);
+                    int succCount = 0;
+                    if (succ1 == 1) {
+                        //substract current leave count
+                        succCount = employeeController.substractEmpLeaveCount(em.getEmployeeNo(), reqDays);
+                        loadSuccessNotification("Leave request success.. \nYou have " + succCount + " Remain Leave days", e);
 
-                } else if (succ1 == 0) {
-                    loadErrorNotification("You have already requested a leave", e);
+                    } else if (succ1 == 0) {
+                        loadErrorNotification("You have already requested a leave", e);
+
+                    }
+
 
                 }
-
+            } catch (NumberFormatException er) {
+                loadErrorNotification("Invalid number " + er.getMessage(), e);
+            } catch (Exception er) {
+                loadErrorNotification("Error : " + er.getMessage(), e);
 
             }
-        }else{
-            loadErrorNotification("No Employee found",e);
+
+        } else {
+            loadErrorNotification("No Employee found", e);
         }
 
 
@@ -464,19 +472,17 @@ public class Controller implements Initializable {
     /*applicant button functions*/
     public void recruitApplicantasEmp(ActionEvent e) throws IOException {
 
-        hrController=new HrController();
-        Applicant app=hrController.getAppliicantDeails(txtAppliNic.getText());
-        if(app==null){
-            loadErrorNotification("No applicant found for NIC : \n"+txtAppliNic.getText(),e);
-        }
-        else {
-            boolean res = hrController.recruitApplicant(app.getName(), txtAppliEmpId.getText(), txtEmpDept.getText(), txtAppliUn.getText(), txtAppliPwd.getText(), txtAppliPost.getText(),txtAppliNic.getText(),app.getCity());
-        if(res){
-            loadSuccessNotification("Employee recruiting successful",e);
-        }
-        else{
-            loadErrorNotification("Unable to Recruit.. Duplicated values",e);
-        }
+        hrController = new HrController();
+        Applicant app = hrController.getAppliicantDeails(txtAppliNic.getText());
+        if (app == null) {
+            loadErrorNotification("No applicant found for NIC : \n" + txtAppliNic.getText(), e);
+        } else {
+            boolean res = hrController.recruitApplicant(app.getName(), txtAppliEmpId.getText(), txtEmpDept.getText(), txtAppliUn.getText(), txtAppliPwd.getText(), txtAppliPost.getText(), txtAppliNic.getText(), app.getCity());
+            if (res) {
+                loadSuccessNotification("Employee recruiting successful", e);
+            } else {
+                loadErrorNotification("Unable to Recruit.. Duplicated values", e);
+            }
         }
 
     }
@@ -518,45 +524,45 @@ public class Controller implements Initializable {
     }
 
     public void confEmpLeave(ActionEvent e) throws IOException {
-        hrController=new HrController();
-        employeeController=new EmployeeController();
+        hrController = new HrController();
+        employeeController = new EmployeeController();
 
-        Employee em=employeeController.getEmployeeDetailsByEmpId(txtEmpNoLeaveReq.getText());
-        if(em==null){
-            loadErrorNotification("No Employee found",e);
-        }else {
+        Employee em = employeeController.getEmployeeDetailsByEmpId(txtEmpNoLeaveReq.getText());
+        if (em == null) {
+            loadErrorNotification("No Employee found", e);
+        } else {
             boolean isRequested = hrController.isLeaveRequested(txtEmpNoLeaveReq.getText());
             if (isRequested) {
-                boolean succ = hrController.confirmLeaveRequest(txtEmpNoLeaveReq.getText(),usrName);
-                if(succ){
-                    loadSuccessNotification("Leave confirmed succesfully",e);
-                }else{
-                    loadErrorNotification("Leave confirmation failed",e);
+                boolean succ = hrController.confirmLeaveRequest(txtEmpNoLeaveReq.getText(), usrName);
+                if (succ) {
+                    loadSuccessNotification("Leave confirmed succesfully", e);
+                } else {
+                    loadErrorNotification("Leave confirmation failed", e);
                 }
-            }else{
-                loadErrorNotification("No leaves requested by Employee : \n"+txtEmpNoLeaveReq.getText(),e);
+            } else {
+                loadErrorNotification("No leaves requested by Employee : \n" + txtEmpNoLeaveReq.getText(), e);
             }
         }
     }
 
     public void rejectEmpLeave(ActionEvent e) throws IOException {
-        hrController=new HrController();
-        employeeController=new EmployeeController();
+        hrController = new HrController();
+        employeeController = new EmployeeController();
 
-        Employee em=employeeController.getEmployeeDetailsByEmpId(txtEmpNoLeaveReq.getText());
-        if(em==null){
-            loadErrorNotification("No Employee found",e);
-        }else {
+        Employee em = employeeController.getEmployeeDetailsByEmpId(txtEmpNoLeaveReq.getText());
+        if (em == null) {
+            loadErrorNotification("No Employee found", e);
+        } else {
             boolean isRequested = hrController.isLeaveRequested(txtEmpNoLeaveReq.getText());
             if (isRequested) {
-                boolean succRej=hrController.rejectLeaveRequest(txtEmpNoLeaveReq.getText());
-                if(succRej){
-                    loadSuccessNotification("Leave rejected succesfully",e);
-                }else{
-                    loadErrorNotification("Leave rejecting failed",e);
+                boolean succRej = hrController.rejectLeaveRequest(txtEmpNoLeaveReq.getText());
+                if (succRej) {
+                    loadSuccessNotification("Leave rejected succesfully", e);
+                } else {
+                    loadErrorNotification("Leave rejecting failed", e);
                 }
-            }else{
-                loadErrorNotification("No leaves requested by Employee : \n"+txtEmpNoLeaveReq.getText(),e);
+            } else {
+                loadErrorNotification("No leaves requested by Employee : \n" + txtEmpNoLeaveReq.getText(), e);
             }
 
         }
@@ -565,7 +571,7 @@ public class Controller implements Initializable {
     public void loadEmpDataToTbl(ActionEvent e) {
 
 
-        hrController=new HrController();
+        hrController = new HrController();
         employeeTblDataList = hrController.getEmpTableDataList();
 
 
@@ -581,7 +587,7 @@ public class Controller implements Initializable {
 
     public void loadApplicantData(ActionEvent e) {
 
-        hrController=new HrController();
+        hrController = new HrController();
         appcantData = hrController.getApplicantDataList();
 
 
@@ -597,7 +603,7 @@ public class Controller implements Initializable {
     }
 
     public void loadLeaveRequests(ActionEvent e) {
-        hrController=new HrController();
+        hrController = new HrController();
         leaveReqData = hrController.getLeaveReqDataList();
 
 
@@ -612,7 +618,7 @@ public class Controller implements Initializable {
 
     public void loadAllLeaves(ActionEvent e) {
 
-        hrController=new HrController();
+        hrController = new HrController();
         leaveData = hrController.getLeaveDataList();
 
 
@@ -624,7 +630,6 @@ public class Controller implements Initializable {
         tblColConfLvRemLv.setCellValueFactory(new PropertyValueFactory<ConfirmedLeavesTable, String>("remainLeaves"));
 
         tblConfLv.setItems(leaveData);
-
 
 
     }
